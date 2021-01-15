@@ -4,4 +4,4 @@ data/spaces
 data/global.mo
 data/GameParams.data
 config.py
-
+data/*.ttf

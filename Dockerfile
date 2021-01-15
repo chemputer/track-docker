@@ -11,14 +11,16 @@ COPY data/spaces/ /home/track/track/track/assets/private/
 COPY data/big/ /home/track/track/track/assets/private/
 COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
+COPY "data/Trebuchet MS.ttf" /usr/local/share/fonts/
 COPY config.py /home/track/track/track/
 RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done
 RUN wget https://www.michaelfogleman.com/static/rush/rush.txt.gz -O /home/track/track/track/scripts/rush/rush.txt.gz
 RUN gzip -d /home/track/track/track/scripts/rush/rush.txt.gz 
 RUN python3 -m pip install -r /home/track/track/requirements.txt
 RUN python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus
-RUN python3 /home/track/track/track/scripts/gameparams/dump.py /home/track/track/track/scripts/gameparams/GameParams.data
-RUN python3 /home/track/track/track/scripts/rush/dump.py /home/track/track/track/scripts/rush/rush.txt
+RUN python3 /home/track/track/track/scripts/gameparams/dump.py
+RUN python3 /home/track/track/track/scripts/rush/dump.py
+RUN python3 /home/track/track/track/scripts/setup.py
 RUN su track
 # Start the bot
 RUN python3 /home/track/track/track/bot.py

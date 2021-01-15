@@ -14,7 +14,7 @@ COPY data/big/ /home/track/track/track/assets/private/
 COPY data/battle_controller.py /home/track/track/track/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY config.py /home/track/track/track/
-RUN cd /home/track/track
+RUN cd /home/track/track/track/
 RUN for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done
 RUN wget https://www.michaelfogleman.com/static/rush/rush.txt.gz -O /home/track/track/track/scripts/rush/
 RUN tar -xvzf /home/track/track/track/scripts/rush/rush.txt.gz 

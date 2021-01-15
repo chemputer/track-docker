@@ -13,7 +13,7 @@ COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY config.py /home/track/track/track/
 RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done
-RUN wget https://www.michaelfogleman.com/static/rush/rush.txt.gz -O /home/track/track/track/scripts/rush/
+RUN wget https://www.michaelfogleman.com/static/rush/rush.txt.gz -O /home/track/track/track/scripts/rush/rush.txt.gz
 RUN tar -xvzf /home/track/track/track/scripts/rush/rush.txt.gz 
 RUN python -m pip install -r /home/track/track/requirements.txt
 RUN python -m pip install git+https://github.com/Rapptz/discord-ext-menus

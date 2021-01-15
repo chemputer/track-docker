@@ -1,11 +1,12 @@
 FROM python:3.7-buster
 RUN apt-get update
 RUN apt-get install -y curl wget git subversion
-RUN mkdir -p /home/track \
-    cd /home/track \
-    git clone https://github.com/padtrack/track.git \
-    cd track/track \
-    svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
+RUN adduser --disabled-password --gecos "" track 
+RUN cd /home/track 
+RUN git clone https://github.com/padtrack/track.git 
+RUN cd /home/track/track/track 
+RUN svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
+RUN echo ls 
 WORKDIR /home/track/track 
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
 COPY data/ship_bars/ /home/track/track/track/assets/private/

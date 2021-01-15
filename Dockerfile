@@ -5,9 +5,11 @@ RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-ut
 RUN adduser --disabled-password --gecos "" track; \
 cd /home/track;git clone https://github.com/padtrack/track.git; \
 cd /home/track/track/track; \
-svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
+svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack; \
+mkdir -p /home/track/track/track/scripts/maplesyrup; \
+wget https://raw.githubusercontent.com/padtrack/track/1de57e11928658996974a27a02fce5a439e1322d/track/scripts/maplesyrup/download.py -O /home/track/track/track/scripts/maplesyrup/download.py
 # Installing all python dependencies
-RUN python3 -m pip install -r /home/track/track/requirements.txt; python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus
+RUN python3 -m pip install -r /home/track/track/requirements.txt; python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; python -m pip install psutil
 # debugging
 #RUN echo $(ls /home/track/track/track) 
 WORKDIR /home/track/track 
@@ -28,8 +30,10 @@ gzip -d /home/track/track/track/scripts/rush/rush.txt.gz
 # run the necessary scripts to create the databases
 RUN cd /home/track/track/track/scripts/gameparams; python3 /home/track/track/track/scripts/gameparams/dump.py; \ 
 cd /home/track/track/track/scripts/rush/; python3 /home/track/track/track/scripts/rush/dump.py; \
-cd /home/track/track/track/scripts/; python3 /home/track/track/track/scripts/setup.py
+cd /home/track/track/track/scripts/; python3 /home/track/track/track/scripts/setup.py; \
+python3 /home/track/track/track/scripts/maplesyrup/download.py
 # Start the bot
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh; chmod 777 /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["python3", "/home/track/track/track/bot.py"]

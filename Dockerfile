@@ -18,7 +18,7 @@ COPY data/spaces/ /home/track/track/track/assets/private/
 COPY data/big/ /home/track/track/track/assets/private/
 COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
-COPY data/*ttf /usr/local/share/fonts/
+COPY data/*.ttf /usr/local/share/fonts/
 COPY config.py /home/track/track/track/
 # allow replay_unpack to work with this by replacing the battle_controller with padtrack's modified one.
 RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done

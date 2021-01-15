@@ -9,7 +9,7 @@ COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
 COPY data/ship_bars/ /home/track/track/track/assets/private/
 COPY data/spaces/ /home/track/track/track/assets/private/
 COPY data/big/ /home/track/track/track/assets/private/
-COPY data/battle_controller.py /home/track/track/track/
+COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY config.py /home/track/track/track/
 RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done

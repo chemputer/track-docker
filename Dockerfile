@@ -2,10 +2,7 @@ FROM python:3.7-buster
 RUN apt-get update
 RUN apt-get install -y curl wget git subversion
 RUN adduser --disabled-password --gecos "" track 
-RUN cd /home/track \
-    git clone https://github.com/padtrack/track.git \
-    cd /home/track/track/track \
-    svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
+RUN cd /home/track;git clone https://github.com/padtrack/track.git; cd /home/track/track/track;svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
 RUN echo $(ls /home/track/track/track) 
 WORKDIR /home/track/track 
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/

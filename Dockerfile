@@ -1,11 +1,11 @@
 FROM python:3.7-buster
 # installing necessary tools
-RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-utils
+RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-utils nano sqlite dialog screen
 # adding user track
 RUN adduser --disabled-password --gecos "" track; \
-cd /home/track;git clone https://github.com/padtrack/track.git; \
-cd /home/track/track/track; \
-svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
+cd /home/track;git clone https://github.com/padtrack/track.git 
+#cd /home/track/track/track; \
+#svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
 # Installing all python dependencies
 RUN python3 -m pip install -r /home/track/track/requirements.txt; \
 python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; \
@@ -15,15 +15,17 @@ python3 -m pip install psutil
 WORKDIR /home/track/track/track 
 # copy over contents of data directory
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
+COPY data/replay_unpack /home/track/track/track/replay_unpack
 COPY data/ship_bars /home/track/track/track/assets/private/ship_bars
 COPY data/spaces /home/track/track/track/assets/private/spaces
 COPY data/big /home/track/track/track/assets/private/big
-COPY data/battle_controller.py /home/track/track/track/utils/
+#COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY data/*.ttf /usr/local/share/fonts/
 COPY config.py /home/track/track/track/
 # allow replay_unpack to work with this by replacing the battle_controller with padtrack's modified one.
-RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done
+#RUN cd /home/track/track/track/; for d in $(ls -d replay_unpack/clients/wows/versions); do cp utils/battle_controller.py $d/battle_controller.py; done
+#RUN cd /home/track/track/track; for i in replay_unpack/clients/wows/versions/* ; do   if [ -d "$i" ]; then cp utils/battle_controller.py $i/battle_controller.py;   fi; done
 # get rush.txt.gz and extract it
 RUN wget https://www.michaelfogleman.com/static/rush/rush.txt.gz -O /home/track/track/track/scripts/rush/rush.txt.gz; \
 gzip -d /home/track/track/track/scripts/rush/rush.txt.gz 

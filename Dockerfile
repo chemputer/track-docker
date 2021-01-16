@@ -12,7 +12,7 @@ python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; \
 python3 -m pip install psutil
 # debugging
 #RUN echo $(ls /home/track/track/track) 
-WORKDIR /home/track/track 
+WORKDIR /home/track/track/track 
 # copy over contents of data directory
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
 COPY data/ship_bars /home/track/track/track/assets/private/ship_bars

@@ -32,7 +32,8 @@ gzip -d /home/track/track/track/scripts/rush/rush.txt.gz
 # run the necessary scripts to create the databases
 RUN cd /home/track/track/track/scripts/gameparams; python3 /home/track/track/track/scripts/gameparams/dump.py; \ 
 cd /home/track/track/track/scripts/rush/; python3 /home/track/track/track/scripts/rush/dump.py; \
-cd /home/track/track/track/scripts/; python3 /home/track/track/track/scripts/setup.py
+cd /home/track/track/track/scripts/; python3 /home/track/track/track/scripts/setup.py; \
+mkdir -p /home/track/track/track/assets/temp; chmod 777 /home/track/track/track/assets/temp
 # Start the bot
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh; chmod 777 /docker-entrypoint.sh

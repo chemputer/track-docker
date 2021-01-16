@@ -15,9 +15,9 @@ python3 -m pip install psutil
 WORKDIR /home/track/track 
 # copy over contents of data directory
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
-COPY data/ship_bars /home/track/track/track/assets/private/
-COPY data/spaces /home/track/track/track/assets/private/
-COPY data/big /home/track/track/track/assets/private/
+COPY data/ship_bars /home/track/track/track/assets/private/ship_bars
+COPY data/spaces /home/track/track/track/assets/private/spaces
+COPY data/big /home/track/track/track/assets/private/big
 COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY data/*.ttf /usr/local/share/fonts/

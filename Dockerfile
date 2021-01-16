@@ -1,6 +1,6 @@
 FROM python:3.7-buster
 # installing necessary tools
-RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-utils nano sqlite dialog screen
+RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-utils nano sqlite dialog screen ffmpeg
 # adding user track
 RUN adduser --disabled-password --gecos "" track; \
 cd /home/track;git clone https://github.com/padtrack/track.git 
@@ -9,7 +9,8 @@ cd /home/track;git clone https://github.com/padtrack/track.git
 # Installing all python dependencies
 RUN python3 -m pip install -r /home/track/track/requirements.txt; \
 python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; \
-python3 -m pip install psutil
+python3 -m pip install psutil; \
+python3 -m pip install imageio-ffmpeg
 # debugging
 #RUN echo $(ls /home/track/track/track) 
 WORKDIR /home/track/track/track 

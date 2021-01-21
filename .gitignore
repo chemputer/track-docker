@@ -1,7 +1,3 @@
-data/big
-data/ship_bars
-data/spaces
-data/global.mo
-data/GameParams.data
 config.py
-data/*.ttf
+data/*
+!data/battle_controller.py

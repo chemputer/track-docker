@@ -3,23 +3,24 @@ FROM python:3.7-buster
 RUN apt-get update; apt-get install -y curl wget git subversion gzip sudo apt-utils nano sqlite dialog screen ffmpeg
 # adding user track
 RUN adduser --disabled-password --gecos "" track; \
-cd /home/track;git clone https://github.com/padtrack/track.git 
-#cd /home/track/track/track; \
+cd /home/track;git clone https://github.com/chemputer/track.git
+#cd /home/track/track/track/libs; \
 #svn checkout https://github.com/Monstrofil/replays_unpack/trunk/replay_unpack
 # Installing all python dependencies
-RUN python3 -m pip install -r /home/track/track/requirements.txt; \
-python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; \
-python3 -m pip install psutil; \
-python3 -m pip install imageio-ffmpeg
+RUN python3 -m pip install -r /home/track/track/requirements.txt
+#python3 -m pip install git+https://github.com/Rapptz/discord-ext-menus; \
+#python3 -m pip install psutil; \
+#python3 -m pip install imageio-ffmpeg
 # debugging
 #RUN echo $(ls /home/track/track/track) 
 WORKDIR /home/track/track/track 
 # copy over contents of data directory
 COPY data/GameParams.data /home/track/track/track/scripts/gameparams/
-COPY data/replay_unpack /home/track/track/track/replay_unpack
+#COPY data/replay_unpack /home/track/track/track/replay_unpack
 COPY data/ship_bars /home/track/track/track/assets/private/ship_bars
 COPY data/spaces /home/track/track/track/assets/private/spaces
 COPY data/big /home/track/track/track/assets/private/big
+COPY data/maplesyrup.db /home/track/track/track/assets/private
 #COPY data/battle_controller.py /home/track/track/track/utils/
 COPY data/global.mo /home/track/track/track/assets/private/
 COPY data/*.ttf /usr/local/share/fonts/
